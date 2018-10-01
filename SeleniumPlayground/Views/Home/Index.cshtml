@@ -1,0 +1,27 @@
+﻿@model HomeIndexViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<header>
+    <h2>SeleniumPlayground</h2>
+    <ul>
+        <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li><a asp-action="Create" asp-controller="Home">Add Restaurant</a></li>
+        <li><a asp-action="About" asp-controller="Home">About</a></li>
+    </ul>
+</header>
+<body>
+
+
+    @foreach (var restaurant in Model.Restaurants)
+    {
+        @Html.Partial("_Summary", restaurant)
+    }
+
+</body>
+
+@section footer{
+    @DateTime.Now
+}
+

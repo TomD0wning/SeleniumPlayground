@@ -1,0 +1,43 @@
+﻿@model Restaurant
+@{
+    ViewBag.Title = "Edit " + @Model.Name;
+}
+<header>
+    <h2>@Model.Id @Model.Name</h2>
+    <ul>
+        <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+    </ul>
+</header>
+<body>
+    <main>
+        <form method="post">
+            <input type="hidden" asp-for="Id" />
+            <div>
+                <label asp-for="Name"></label>
+                <input asp-for="Name" />
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div>
+                <label asp-for="Address"></label>
+                <input asp-for="Address" />
+                <span asp-validation-for="Address"></span>
+            </div>
+            <div>
+                <label asp-for="Owner"></label>
+                <input asp-for="Owner" />
+                <span asp-validation-for="Owner"></span>
+            </div>
+            <div>
+                <label asp-for="Rating"></label>
+                <input asp-for="Rating" />
+                <span asp-validation-for="Rating"></span>
+            </div>
+        </form>
+    </main>
+    <div>
+        <input type="submit" name="save" value="Save" />
+        <a asp-action="Index" asp-controller="Home">Back</a>
+    </div>
+</body>
+
+}

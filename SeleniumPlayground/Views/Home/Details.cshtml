@@ -1,0 +1,26 @@
+﻿@model Restaurant
+@{
+    ViewBag.Title = @Model.Name + " details";
+}
+<header>
+    <h2>@Model.Id @Model.Name</h2>
+    <ul>
+        <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li><a asp-action="Create" asp-controller="Home">Add Resturant</a></li>
+        <li><a asp-action="About" asp-controller="Home">About</a></li>
+    </ul>
+</header>
+<body>
+</body>
+
+<main>
+    <div class="row">
+        <div class="column">
+            <p>ID: <i>@Model.Id</i></p>
+            <p>Address: <i>@Model.Address</i></p>
+            <p>Proprieter:  <i>@Model.Owner</i></p>
+            <p>Food: <i>@Model.Cuisine</i></p>
+            <p>Rating: <i>@Model.Rating</i></p>
+        </div>
+    </div>
+</main>
