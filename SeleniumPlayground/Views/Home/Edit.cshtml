@@ -32,12 +32,11 @@
                 <input asp-for="Rating" />
                 <span asp-validation-for="Rating"></span>
             </div>
+
+            <div>
+                <input type="submit" name="save" value="Save" />
+                <a asp-action="Index" asp-controller="Home">Back</a>
+            </div>
         </form>
     </main>
-    <div>
-        <input type="submit" name="save" value="Save" />
-        <a asp-action="Index" asp-controller="Home">Back</a>
-    </div>
 </body>
-
-}

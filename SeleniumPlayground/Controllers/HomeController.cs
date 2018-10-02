@@ -56,8 +56,12 @@ namespace SeleniumPlayground.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult Create(){
+            return View();
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Create(RestaurantEditModel model)
         {
             //Checks the model state
@@ -82,17 +86,59 @@ namespace SeleniumPlayground.Controllers
             }
         }
 
-
-        public IActionResult Edit(int id)
-        {
+        [HttpGet]
+        public IActionResult Edit(int id){
             var model = _restaurantData.Get(id);
             if (model == null)
             {
                 return RedirectToAction("Details");
             }
-
-            _restaurantData.Edit(_restaurantData.Get(id));
             return View(model);
+        }
+
+
+        //[HttpPost]
+        //public IActionResult Edit(Restaurant restaurant)
+        //{
+        //    var model = _restaurantData.Get(restaurant.Id);
+        //    if (model == null)
+        //    {
+        //        return RedirectToAction("Details");
+        //    }
+
+        //    _restaurantData.Edit(model);
+        //    return View(model);
+        //}
+
+
+        [HttpPost]
+        public IActionResult Edit(RestaurantEditModel model)
+        {
+            {
+                //Checks the model state
+                if (ModelState.IsValid)
+                {
+                    var temp = _restaurantData.Get(model.Id);
+                    _restaurantData.Delete(temp);
+
+                    var newRestaurant = new Restaurant();
+
+                    newRestaurant.Name = model.Name;
+                    newRestaurant.Address = model.Address;
+                    newRestaurant.Owner = model.Owner;
+                    newRestaurant.Rating = model.Rating;
+                    newRestaurant.Cuisine = model.Cuisine;
+
+                    newRestaurant = _restaurantData.Add(newRestaurant);
+
+                    return RedirectToAction(nameof(Details), new { id = newRestaurant.Id });
+
+                }
+                else
+                {
+                    return View();
+                }
+            }
         }
 
         [HttpPost]
@@ -101,7 +147,7 @@ namespace SeleniumPlayground.Controllers
             if (ModelState.IsValid)
             {
                 _restaurantData.Delete(model);
-                return View();
+                return RedirectToRoute("Index");
 ;           }
 
             return View();

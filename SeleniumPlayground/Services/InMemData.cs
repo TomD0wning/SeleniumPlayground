@@ -47,15 +47,14 @@ namespace SeleniumPlayground.Services
 
             if (temp != null)
             {
-                temp.Name = restaurant.Name;
-                temp.Address = restaurant.Address;
-                temp.Owner = restaurant.Owner;
-                temp.Rating = restaurant.Rating;
+                _restaurants.Remove(temp);
+                _restaurants.Add(restaurant);
 
-                return temp;
+
+                return restaurant;
             }
 
-            return temp;
+            return restaurant;
         }
 
         public bool Delete(Restaurant restaurant)
